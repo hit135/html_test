@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        var random = Math.random();
+        var randomNumber = Math.floor(random * 100) + 1;
+        console.log("random : ", random);
+
+        // 유니티 32 배열
+        var array = new Uint32Array(10);
+        var cryptoObj = window.crypto;
+        // 랜덤한 값 출력 math.random() 함수는 취약점이 존재한다
+        window.crypto.getRandomValues(array);
+        var secureNumber = (array[0] % 100) + 1;
+        console.log("secureNumber : ", secureNumber);
+        console.log("array : ", array);
+
+
+        // 한줄로 랜덤 뽑기
+        let randomCrypto = window.crypto.getRandomValues(new Uint32Array(1))[0] * Math.pow(0.1, 10);
+        console.log("randomCrypto : ", randomCrypto);
+
+        console.log("test : ", (Math.random() + 1).toString(36).substring(4));
+        console.log("test2 : ", (window.crypto.getRandomValues(new Uint32Array(1))[0] * Math.pow(0.1, 10) + 1).toString(36).substring(4));
+
+        var testStr = "user<script>alert('악성코드')/script>"
+        var index = testStr.indexOf("user");
+        var safeUser = filter(testStr.substring(index, index+40)); //Safe
+        console.log("safeUser : ", safeUser);
+        console.log("< : ", "&lt;");
+        let test2 = (testStr.substring(index, index+10)).replaceAll("<","&lt;");
+        console.log("test2 : ", test2);
+
+
+        function filter(str){
+            // innerHTML XSS 공격 방지
+            // 20230313HGP
+            if(str.indexOf('<') != -1){
+                str = str.replaceAll("<", "&lt;");
+                if(str.indexOf('>') != -1){
+                    str = str.replaceAll('>', '&gt;');
+                }
+            }
+            return str;
+        }
+
+        
+    </script>
+</body>
+</html>
