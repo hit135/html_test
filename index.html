@@ -50,19 +50,24 @@
 
         // 호버 이벤트
         function fn_weatherEvent() {
+            let weatherArr = [
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28b566dca82634c93f811198148a26065",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f5287469802eca457586a25a096fd31",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f17e489affba0627eb1eb39695f93dd",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a282f3bd8c9735553d03f6f982e10ebe70",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ac8e738cb631e72fdb9a96b36413984e",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ce9463e040a07a9462a54df43e1d73f1",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2a88f7b2cbb72be0bdfff91ad65b168ab",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a266d8fd08427c1f00d04db607cc4cdc8e",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a26fb33a4b4cf43b6605fc7a1e262f0845",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2960f4ab09fe6e38bae8c63030c9b37f9",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2339e41ce89b663315d96faecd7cfd11b"
+                             ]
             $(".hover-btn").hover(function () {
-                if($(this).hasClass("btn-danger")){
-                    $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a226397d82c8691bdabf557d1536959d9c");
-                } else {
-                    switch ($(this).attr("data-img")) {
-                        case "img-0": $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28b566dca82634c93f811198148a26065"); break;
-                        case "img-1": $(".weather-img").attr("src", " "); break;
-                        case "img-2": $(".weather-img").attr("src", " "); break;
-                        case "img-3": $(".weather-img").attr("src", " "); break;
-                        case "img-4": $(".weather-img").attr("src", " "); break;
-                        case "img-4": $(".weather-img").attr("src", " "); break;
-                    }
-                }
+                let randomIndex = Math.floor(Math.random() * weatherArr.length);
+                $(this).hasClass("btn-danger") 
+                    ? $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a226397d82c8691bdabf557d1536959d9c")
+                    : $(".weather-img").attr("src", weatherArr[randomIndex]);
             }, function () {
                 $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28f324a0b9c48f77dbce3a43bd11ce785");
             });
