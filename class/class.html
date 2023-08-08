@@ -16,7 +16,56 @@
         // 활용하지 않음!
         // class를 선언해서 객체를 관리하면 모듈화, 가독성이 좋아질텐데도 인지하지 못함
 
-        
+        // 기본적인 class의 이점과 예시 3가지
+
+        // 1. 객체 지향
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`안녕하세요, 제 이름은 ${this.name}이고 ${this.age}살 입니다.`)
+            }
+        }
+
+        let john = new Person("존", 25);
+        john.greet();
+
+        // 2. 모듈화와 재사용성
+        class Calculator {
+            add(a, b) {
+                return a + b;
+            }
+
+            subtract(a, b) {
+                return a - b;
+            }
+        }
+
+        const calculator = new Calculator();
+        console.log(calculator.add(5, 3));
+
+        // 3. 상속
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+
+            speak() {
+                console.log(`${this.name}이 소리를 냈다.`);
+            }
+        }
+
+        class Dog extends Animal {
+            speak() {
+                console.log(`${this.name}가 짖었다.`);
+            }
+        }
+
+        const dog = new Dog("Buddy");
+        dog.speak();
     </script>
 </body>
 </html>
