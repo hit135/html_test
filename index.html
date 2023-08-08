@@ -30,20 +30,37 @@
 
         // 날짜
         function fn_signDate() {
-            let tempHtml = `
-                    <div class="row">`
+            /* 기존 코드에서 수정
             for(let i = 0; i < 6; i++){
                 let targetDay = new Date();
                 targetDay.setDate(targetDay.getDate() + i);
                 let formattedDate = targetDay.toLocaleDateString("ko-KR", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
                 let className = (formattedDate == "2023년 7월 15일 토요일") ? "btn-danger" : "btn-primary";
-                tempHtml +=
+                tempHtml2 +=
                         `<div class="col-2">
                             <button class="hover-btn btn ${className}" data-img="img-${i}">${formattedDate}</button>
                         </div>`
             }
                 tempHtml += `
                     </div>`;
+            */
+
+            let tempHtml = `
+                <div class="row">
+                    ${Array.from({ length : 6}).map(( _ , i) => {
+                        let targetDay = new Date();
+                        targetDay.setDate(targetDay.getDate() + i);
+                        let formattedDate = targetDay.toLocaleDateString("ko-KR", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                        let className = (formattedDate == "2023년 7월 15일 토요일") ? "btn-danger" : "btn-primary";     
+                        return `
+                            <div class="col-2">
+                                <button class="hover-btn btn ${className}" data-img="img-${i}">${formattedDate}</button>
+                            </div>`;
+                    }).join('')}
+                </div>`;
+
+            let tempHtml2 = `
+                    <div class="row">`
             $(".weather-div").prepend(tempHtml);
             fn_weatherEvent();
         }
@@ -63,13 +80,14 @@
                               "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2960f4ab09fe6e38bae8c63030c9b37f9",
                               "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2339e41ce89b663315d96faecd7cfd11b"
                              ]
-            $(".hover-btn").hover(function () {
-                let randomIndex = Math.floor(Math.random() * weatherArr.length);
-                $(this).hasClass("btn-danger") 
-                    ? $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a226397d82c8691bdabf557d1536959d9c")
-                    : $(".weather-img").attr("src", weatherArr[randomIndex]);
-            }, function () {
-                $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28f324a0b9c48f77dbce3a43bd11ce785");
+            $(".hover-btn").hover( 
+                () => {
+                    let randomIndex = Math.floor(Math.random() * weatherArr.length);
+                    $(this).hasClass("btn-danger") 
+                        ? $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a226397d82c8691bdabf557d1536959d9c")
+                        : $(".weather-img").attr("src", weatherArr[randomIndex]);
+            },  () => {
+                    $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28f324a0b9c48f77dbce3a43bd11ce785");
             });
         }
         
