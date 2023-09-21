@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>롤링 이미지</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <style>
+        [class*="banner-div"] {
+            display: flex;
+            overflow: hidden;
+        }
+        [class*="banner-div"] .rolling-list ul {
+            display: flex;
+        }
+        [class*="banner-div"] .rolling-list ul li {
+            width: 8vw;
+            min-width: 185px;
+            margin: 10px;
+            height: auto;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        [class*="banner-div"] .rolling-list ul li .image-wrap {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+        }
+        [class*="banner-div"] .rolling-list ul li .image-wrap > img {
+            width: 100%;
+        }
+        [class*="banner-div"] .rolling-list ul li .desc {
+            font-family: 'BMJUA';
+        }
+        [class*="banner-div"] .rolling-list ul li .desc strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+        [class*="banner-div"] .rolling-list ul li .desc span {
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        /* 2번째 롤링 위치 */
+        .banner-div-second .rolling-list.original { margin-left: -7%; }
+
+        .rolling-list.original {
+            animation: rollingleft1 30s linear infinite;
+        }
+        .rolling-list.clone {
+            animation: rollingleft2 30s linear infinite;
+        }
+        .rolling-list.clone2 {
+            animation: rollingleft3 15s linear infinite;
+        }
+
+        @keyframes rollingleft1 {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-50%);}
+            50% { transform: translateX(-100%); }
+            50.01% { transform: translateX(100%); }
+            75% { transform: translateX(50%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes rollingleft2 {
+            0% { transition: translateX(0); }
+            50% { transform: translateX(-100%);}
+            100% { transform: translateX(-200%); }
+        }
+
+        @keyframes rollingleft3 {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-50%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @media (max-width: 991.9px) {
+            [class*="banner-div"] .rolling-list ul li {
+                min-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-div"> <!-- 배너표시영역 -->
+        <div class="rolling-list">
+          <ul>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28b566dca82634c93f811198148a26065" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f17e489affba0627eb1eb39695f93dd" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a282f3bd8c9735553d03f6f982e10ebe70" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ac8e738cb631e72fdb9a96b36413984e" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ce9463e040a07a9462a54df43e1d73f1" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2a88f7b2cbb72be0bdfff91ad65b168ab" alt="배너이미지"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="banner-div-second"> <!-- 배너표시영역 -->
+        <div class="rolling-list">
+          <ul>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a266d8fd08427c1f00d04db607cc4cdc8e" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a26fb33a4b4cf43b6605fc7a1e262f0845" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2960f4ab09fe6e38bae8c63030c9b37f9" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f17e489affba0627eb1eb39695f93dd" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28b566dca82634c93f811198148a26065" alt="배너이미지"></div>
+            </li>
+            <li>
+              <div class="image-wrap"><img src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2339e41ce89b663315d96faecd7cfd11b" alt="배너이미지"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+
+    <script>
+        $(document).ready(function(){
+            fn_rollingBanner('.banner-div');
+            fn_rollingBanner('.banner-div-second');
+        });
+
+        function fn_rollingBanner(selector) {
+            // 롤링 배너 복제
+            let $roller = $(selector + ' .rolling-list');
+            let $wrapper = $(selector);
+
+            let $clone1 = $roller.clone(true);
+            let $clone2 = $roller.clone(true);
+
+            $wrapper.append($clone1, $clone2); // 복제본을 래퍼에 추가
+
+            $roller.addClass('original');
+            $clone1.addClass('clone');
+            $clone2.addClass('clone2');
+        }
+        // 롤링 배너 복제본 생성
+        let roller = document.querySelector('.rolling-list');
+        roller.id = 'roller1'; // 아이디 부여
+
+        let clone = roller.cloneNode(true)
+        // cloneNode : 노드 복제. 기본값은 false. 자식 노드까지 복제를 원하면 true 사용
+        clone.id = 'roller2';
+        document.querySelector('.wrap').appendChild(clone); // wrap 하위 자식으로 부착
+
+        document.querySelector('#roller1').style.left = '0px';
+        document.querySelector('#roller2').style.left = document.querySelector('.rolling-list ul').offsetWidth + 'px';
+        // offsetWidth : 요소의 크기 확인(margin을 제외한 padding값, border값까지 계산한 값)
+
+        roller.classList.add('original');
+        clone.classList.add('clone');
+
+        /*
+            롤링 이미지 원리
+             - 롤링할 div를 만들고 
+             - 해당 div를 클론 
+             - 클론은 2개가 간편 -> but, 사이즈 조정시 부모 요소를 꽉차게 롤링되지 않으면 div가 옮겨지는게 보인다.
+             - transform 애니메이션을 이용해 시간에 따라 x값을 조정해준다
+             - div 3개 클론시 하나는 절반의 시간만 적용해 절반마다 되돌아가 나머지 div가 옮겨지는 모습을 숨긴다
+        */
+    </script>
+</body>
+</html>
