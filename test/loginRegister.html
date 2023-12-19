@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+        }
+
+        .container {
+            display: block;
+            max-width: 680px;
+            width: 80%;
+            margin: 100px auto;
+        }
+
+        h1 {
+            color: #1e5491;
+            font-size: 48px;
+            letter-spacing: -3px;
+            text-align: center;
+            margin: 100px 0 80px 0;
+            transition: .2s linear;
+        }
+
+        .links {
+            list-style-type: none;
+        }
+
+        .links li {
+            display: inline-block;
+            margin: 0 20px 0 0;
+            transition: .2s linear;
+        }
+
+        .links li:nth-child(2) {
+            opacity: .6;
+        }
+
+        .links li:nth-child(2):hover {
+            opacity: 1;
+        }
+
+        .links li:nth-child(3) {
+            opacity: .6;
+            float: right;
+        }
+
+        .links li:nth-child(3):hover {
+            opacity: 1;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #0f132a;
+            font-weight: bolder;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        form {
+            width: 100%;
+            max-width: 680px;
+            margin: 40px auto 10px;
+        }
+
+        .input__block {
+            margin: 20px auto;
+            display: block;
+            position: relative;
+        }
+
+        .input__block.first-input__block::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50px;
+            display: block;
+            width: 0;
+            height: 0;
+            background: transparent;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid rgba(15, 19, 42, 0.1);
+            transition: .2s linear;
+        }
+
+        .input__block.signup-input__block::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 150px;
+            display: block;
+            width: 0;
+            height: 0;
+            background: transparent;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid rgba(15, 19, 42, 0.1);
+            transition: .2s linear;
+        }
+
+        input {
+            display: block;
+            width: 90%;
+            max-width: 680px;
+            height: 50px;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: none;
+            background: rgba(15, 19, 42, 0.1);
+            color: rgba(15, 19, 42, 0.3);
+            padding: 0 0 0 15px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+        }
+
+        input:focus,
+        input:active {
+            outline: none;
+            border: none;
+            color: rgba(15, 19, 42, 1);
+        }
+
+        input.repeat__password {
+            opacity: 0;
+            display: none;
+            transition: .2s linear;
+        }
+
+        .signin__btn {
+            background: #1e5491;
+            color: white;
+            display: block;
+            width: 92.5%;
+            max-width: 680px;
+            height: 50px;
+            border-radius: 8px;
+            margin: 0 auto;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 15px 30px rgba(30, 40, 233, 0.132);
+            transition: .2s linear;
+        }
+
+        .signin__btn:hover {
+            box-shadow: 0 0 0 rgba(233, 30, 99, 0);
+        }
+
+        .separator {
+            display: block;
+            margin: 30px auto 10px;
+            text-align: center;
+            height: 40px;
+            position: relative;
+            background: transparent;
+            color: rgba(15, 19, 42, 0.4);
+            font-size: 13px;
+            width: 90%;
+            max-width: 680px;
+        }
+
+        .separator::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 0;
+            background: rgba(15, 19, 42, 0.2);
+            height: 1px;
+            width: 45%;
+        }
+
+        .separator::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 0;
+            background: rgba(15, 19, 42, 0.2);
+            height: 1px;
+            width: 45%;
+        }
+
+        .google__btn,
+        .github__btn {
+            display: block;
+            width: 90%;
+            max-width: 680px;
+            margin: 20px auto;
+            height: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 8px;
+            border: none;
+            line-height: 40px;
+        }
+
+        .google__btn.google__btn {
+            background: #5b90f0;
+            color: white;
+            box-shadow: 0 15px 30px rgba(91, 144, 240, 0.36);
+            transition: .2s linear;
+        }
+
+        .google__btn.google__btn:hover {
+            box-shadow: 0 0 0 rgba(91, 144, 240, 0);
+        }
+
+        .github__btn.github__btn {
+            background: #25282d;
+            color: white;
+            box-shadow: 0 15px 30px rgba(37, 40, 45, 0.36);
+            transition: .2s linear;
+        }
+
+        .github__btn.github__btn:hover {
+            box-shadow: 0 0 0 rgba(37, 40, 45, 0);
+        }
+
+        footer p {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer p .fa {
+            color: #000;
+            font-weight: bold;
+        }
+
+        footer p a {
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0 5px;
+        }
+
+        footer p a .fa-facebook {
+            color: #3b5998;
+        }
+
+        footer p a .fa-twitter {
+            color: #1da1f2;
+        }
+
+        footer p a .fa-instagram {
+            color: #f77737;
+        }
+
+        footer p a .fa-linkedin {
+            color: #0077b5;
+        }
+
+        footer p a .fa-behance {
+            color: #1769ff;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Heading -->
+        <h1>로그인</h1>
+
+        <!-- Links -->
+        <ul class="links">
+            <li>
+                <a href="#" id="signin">로그인</a>
+            </li>
+            <li>
+                <a href="#" id="signup">회원가입</a>
+            </li>
+        </ul>
+
+        <!-- Form -->
+        <form action="" method="post">
+            <!-- email input -->
+            <div class="first-input input__block first-input__block">
+                <input type="text" placeholder="아이디" class="input" id="email" />
+            </div>
+            <!-- password input -->
+            <div class="input__block">
+                <input type="password" placeholder="비밀번호" class="input" id="password" />
+            </div>
+            <!-- repeat password input -->
+            <div class="input__block">
+                <input type="password" placeholder="비밀번호 확인" class="input repeat__password hide_input"
+                    id="repeat__password" />
+            </div>
+            <!-- name input -->
+            <div class="input__block">
+                <input type="text" placeholder="성명" class="input repeat__password hide_input"/>
+            </div>
+            <!-- phone input -->
+            <div class="input__block">
+                <input type="text" placeholder="핸드폰 번호" class="input repeat__password hide_input"/>
+            </div>
+            <!-- 로그인 button -->
+            <button class="signin__btn">
+                로그인
+            </button>
+        </form>
+        <!-- separator -->
+        <div class="separator">
+            <p>OR</p>
+        </div>
+        <!-- google button -->
+        <button class="google__btn">
+            <i class="fa fa-google"></i>
+            구글 아이디로 로그인
+        </button>
+        <!-- google button -->
+        <button class="github__btn">
+            <i class="fa fa-github"></i>
+            깃허브 아이디로 로그인
+        </button>
+    </div>
+
+    <footer>
+        <p>
+          방문해주셔서 감사합니다! 
+          <i class="fa fa-smile-o"></i> 
+          <i class="fa fa-smile-o"></i> 
+          <i class="fa fa-smile-o"></i> 
+        </p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            let signup = $(".links").find("li").find("#signup");
+            let signin = $(".links").find("li").find("#signin");
+            let reset = $(".links").find("li").find("#reset");
+            let first_input = $("form").find(".first-input");
+            let hidden_input = $("form").find(".input__block").find(".hide_input");
+            let signin_btn = $("form").find(".signin__btn");
+            let footer_p = $("footer").find("p");
+
+            //----------- 회원가입 ---------------------
+            signup.on("click", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().siblings("h1").text("회원가입");
+                $(this).parent().css("opacity", "1");
+                $(this).parent().siblings().css("opacity", ".6");
+                first_input.removeClass("first-input__block").addClass("signup-input__block");
+                hidden_input.css({
+                    "opacity": "1",
+                    "display": "block"
+                });
+                footer_p.css("display", "none");
+                signin_btn.text("인증요청");
+            });
+
+
+            //----------- 로그인 ---------------------
+            signin.on("click", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().siblings("h1").text("로그인");
+                $(this).parent().css("opacity", "1");
+                $(this).parent().siblings().css("opacity", ".6");
+                first_input.addClass("first-input__block")
+                    .removeClass("signup-input__block");
+                hidden_input.css({
+                    "opacity": "0",
+                    "display": "none"
+                });
+                footer_p.css("display", "block");
+                signin_btn.text("로그인");
+            });
+
+            //----------- reset ---------------------
+            reset.on("click", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().siblings("form")
+                    .find(".input__block").find(".input").val("");
+            })
+        });
+    </script>
+</body>
+
+</html>
