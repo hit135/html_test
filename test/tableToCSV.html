@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table to csv</title>
+    <script type="text/javascript" src="lib/xlsx.full.min.js"></script>
+</head>
+<body>
+    <button id="tableToCSV" onclick="fn_tableOutCsv()">CSV 다운로드</button>
+    <table id="outputTable">
+        <thead>
+            <tr>
+                <td class="thead-td sticky-left-1">계정</td>
+                <td class="thead-td sticky-left-2">상태</td>
+                <td class="thead-td sticky-left-3">총합</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>test001</td>
+                <td>사용</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>test002</td>
+                <td>사용</td>
+                <td>39</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+    // 테이블 -> CSV
+    function fn_tableOutCsv() {
+        let wb = XLSX.utils.table_to_book(document.getElementById('outputTable'), {sheet:"사고 분류 통계", raw:true});
+        XLSX.writeFile(wb, ('학교안전사고분류.xlsx'));
+    }
+    </script>
+</body>
+</html>
