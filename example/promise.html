@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Promise 함수</title>
+</head>
+<body>
+    <button type="button" class="sync-button">동기 함수</button>
+    <button type="button" class="async-button">비동기 함수</button>
+
+    <script>
+        $(document).ready(() => {
+            /* EVENT */
+            $('.sync-button').on('click', () => { handleExecution(true) });
+            $('.async-button').on('click', () => { handleExecution(false) });
+        });
+
+        /* global Value */
+        const loopArr = [1, 2, 3];
+
+        /* Function */
+        function handleExecution(isSync) {
+            console.log("Before function call");
+
+            isSync 
+                ? syncFunction() 
+                : asyncFunction().then(result => { console.log(result); });
+
+            console.log("After function call");
+        }
+
+        function syncFunction() {
+            console.log("Start");
+            for(let i of loopArr) console.log(i);
+            console.log("End");
+            console.log("Sync function completed");
+        }
+
+        function asyncFunction() {
+            return new Promise((resolve, reject) => {
+                console.log("Start");
+                for(let i of loopArr) console.log(i);
+                console.log("End");
+                resolve("Async function completed");
+            });
+        }
+
+    </script>
+</body>
+</html>
