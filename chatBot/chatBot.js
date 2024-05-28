@@ -31,8 +31,11 @@ const chatTypeJSON = {
     }
 }
 let nowSelectChat = chatTypeJSON.cynical;
+let apiKey;
 
 $(document).ready(function () {
+    apiKey = prompt("Open AI API KEY를 입력해주세요.");
+    if (apiKey === null) alert("API 키를 입력하지 않았습니다. 사용이 제한됩니다.");
     // Event
     $sendButton.click( async () => {
         const message = $userInput.val().trim();
@@ -75,7 +78,7 @@ async function fetchAIResponse(prompt) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey.toString()}`
+            'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
