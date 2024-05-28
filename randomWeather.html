@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        html, body { width: 100%; height: 100%;}
+        .weather-img { height: 50vh;}
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center">
+    <div id="wrap">
+        <div class="weather-div">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center mt-4">
+                    <img class="weather-img" src="https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28f324a0b9c48f77dbce3a43bd11ce785">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            fn_signDate();
+        });
+
+        // 날짜
+        function fn_signDate() {
+            /* 기존 코드에서 수정
+            for(let i = 0; i < 6; i++){
+                let targetDay = new Date();
+                targetDay.setDate(targetDay.getDate() + i);
+                let formattedDate = targetDay.toLocaleDateString("ko-KR", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                let className = (formattedDate == "2023년 7월 15일 토요일") ? "btn-danger" : "btn-primary";
+                tempHtml2 +=
+                        `<div class="col-2">
+                            <button class="hover-btn btn ${className}" data-img="img-${i}">${formattedDate}</button>
+                        </div>`
+            }
+                tempHtml += `
+                    </div>`;
+            */
+
+            let tempHtml = `
+                <div class="row">
+                    ${Array.from({ length : 6}).map(( _ , i) => {
+                        let targetDay = new Date();
+                        targetDay.setDate(targetDay.getDate() + i);
+                        let formattedDate = targetDay.toLocaleDateString("ko-KR", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                        let className = (formattedDate == "2023년 7월 15일 토요일") ? "btn-danger" : "btn-primary";     
+                        return `
+                            <div class="col-2">
+                                <button class="hover-btn btn ${className}" data-img="img-${i}">${formattedDate}</button>
+                            </div>`;
+                    }).join('')}
+                </div>`;
+
+            let tempHtml2 = `
+                    <div class="row">`
+            $(".weather-div").prepend(tempHtml);
+            fn_weatherEvent();
+        }
+
+        // 호버 이벤트
+        function fn_weatherEvent() {
+            let weatherArr = [
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28b566dca82634c93f811198148a26065",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f5287469802eca457586a25a096fd31",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a29f17e489affba0627eb1eb39695f93dd",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a282f3bd8c9735553d03f6f982e10ebe70",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ac8e738cb631e72fdb9a96b36413984e",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2ce9463e040a07a9462a54df43e1d73f1",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2a88f7b2cbb72be0bdfff91ad65b168ab",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a266d8fd08427c1f00d04db607cc4cdc8e",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a26fb33a4b4cf43b6605fc7a1e262f0845",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2960f4ab09fe6e38bae8c63030c9b37f9",
+                              "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a2339e41ce89b663315d96faecd7cfd11b"
+                             ]
+            $(".hover-btn").hover( 
+                () => {
+                    let randomIndex = Math.floor(Math.random() * weatherArr.length);
+                    $(this).hasClass("btn-danger") 
+                        ? $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a226397d82c8691bdabf557d1536959d9c")
+                        : $(".weather-img").attr("src", weatherArr[randomIndex]);
+            },  () => {
+                    $(".weather-img").attr("src", "https://item.kakaocdn.net/do/a0cd4c54cd7589e0690b5a674aaff7a28f324a0b9c48f77dbce3a43bd11ce785");
+            });
+        }
+        
+
+    </script>
+</body>
+</html>

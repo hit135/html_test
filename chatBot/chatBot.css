@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .message {
+    padding: 10px;
+    margin-top: 5px;
+    width: fit-content;
+    border-radius: 5px;
+    display: flex;
+    max-width: 75%;
+  }
+  .message.mine {    
+    align-self: end;
+    background-color: #ffe605;
+  }
+  .message.bot {    
+    align-self: start;
+    background-color: #dfffff;
+  }
+  #chat-container {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9e6e6;
+    border-radius: 3px;
+  }
+  #chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+  }
+  #chat-messages[data-image="cynical"] {
+    background-image: url(image/cynical_face.jpg);
+  }
+  #chat-messages[data-image="positive"] {
+    background-image: url(image/positive_face.jpg);
+  }
+  #chat-messages[data-image="professional"] {
+    background-image: url(image/professional_face.jpg);
+  }
+  #chat-messages[data-image="stupid"] {
+    background-image: url(image/stupid_face.jpg);
+  }
+  #user-input {
+    display: flex;
+    padding: 10px;
+  }
+  #user-input input {
+    flex: 1;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+  }
+  #user-input button {
+    border: none;
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .bot-type { 
+    display: flex; 
+    margin-top: 5px 0 15px 0;
+  }
+  .bot-type > button { 
+    flex: 1; 
+    margin: 0 5px; 
+    border: none; 
+    padding: 7px 10px; 
+    line-height: 1.5; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: all 0.2s ease; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: azure;
+  }
+  .bot-type > button:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    transform: translateY(3px);
+  }
+  .bot-type > button.on { 
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    background-color: #b4e1e1;
+    color: #FFF;
+    transform: translateY(3px);
+  }

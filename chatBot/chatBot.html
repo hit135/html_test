@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI를 이용한 챗봇</title>
+  <link rel="stylesheet" href="chatBot.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="apiKey.js"></script>
+</head>
+<body>
+  <div id="chat-container">
+    <div class="bot-type">
+      <button type="button" class="on" value="cynical">냉소적인</button>
+      <button type="button" value="positive">긍정적인</button>
+      <button type="button" value="professional">전문적인</button>
+      <button type="button" value="stupid">바보같은</button>
+    </div>
+    <div id="chat-messages" data-image="cynical"></div>
+    <div id="user-input">
+      <input type="text" placeholder="대화할 봇을 선택하고 메시지를 입력하세요..." />
+      <button>전송</button>
+    </div>
+  </div>
+
+  <script src="chatBot.js"></script>
+</body>
+</html>
