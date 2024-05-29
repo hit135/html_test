@@ -71,8 +71,8 @@ body {
     border-radius: 2px;
   }
   .bot-type { 
-    display: flex; 
-    margin-top: 5px 0 15px 0;
+    display: flex;
+    padding: 5px 0 15px 0;
   }
   .bot-type > button { 
     flex: 1; 
